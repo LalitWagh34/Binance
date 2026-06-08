@@ -6,6 +6,9 @@ Usage: python cli.py --symbol BTCUSDT --side BUY --type MARKET --qty 0.01
 import argparse
 import os
 import sys
+from rich.console import Console
+from rich.panel import Panel
+console = Console()
 
 from dotenv import load_dotenv
 
@@ -85,7 +88,7 @@ def main():
             stop_price = args.stop_price,
         )
     except ValidationError as e:
-        print(f"\n❌ Validation Error: {e}\n")
+        console.print(Panel(f"[bold red]❌ Validation Error:[/bold red] {e}", border_style="red"))
         logger.error("Validation error: %s", e)
         sys.exit(1)
 
@@ -139,21 +142,22 @@ def main():
 
         # ── 5. Print response ───────────────────────────────────────
         print_order_response(order)
-        print("\n✅ Order placed successfully!\n")
+        console.print(Panel("[bold green]✅ Order placed successfully![/bold green]", border_style="green"))
         logger.info("Order placed successfully: orderId=%s", order.get("orderId"))
 
     except BinanceAPIError as e:
-        print(f"\n❌ Binance API Error [{e.code}]: {e.message}\n")
+        console.print(Panel(f"[bold red]❌ Binance API Error [{e.code}]:[/bold red] {e.message}", border_style="red"))
         logger.error("Binance API error: %s", e)
         sys.exit(1)
 
     except ConnectionError as e:
-        print(f"\n❌ Network Error: Could not connect to Binance Testnet.\n  {e}\n")
+        console.print(Panel(f"[bold red]❌ Network Error:[/bold red] Could not connect to Binance Testnet.\n{e}", border_style="red"))
         logger.error("Network error: %s", e)
         sys.exit(1)
 
     except Exception as e:
-        print(f"\n❌ Unexpected Error: {e}\n")
+        console.print(Panel(f"[bold red]❌ Unexpected Error:[/bold red] {e}", border_style="red"))
+
         logger.exception("Unexpected error: %s", e)
         sys.exit(1)
 

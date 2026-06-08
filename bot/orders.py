@@ -5,7 +5,12 @@ Supports MARKET, LIMIT, and STOP_MARKET orders.
 
 from bot.client import BinanceClient
 from bot.logging_config import get_logger
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+from rich import box
 
+console = Console()
 logger = get_logger("orders")
 
 ORDER_ENDPOINT = "/api/v3/order"
@@ -147,33 +152,39 @@ def place_stop_market_order(
 
 
 def print_order_summary(symbol: str, side: str, order_type: str, quantity: float, price: float = None, stop_price: float = None):
-    """Print a clean order request summary to the console."""
-    print("\n" + "=" * 50)
-    print("         ORDER REQUEST SUMMARY")
-    print("=" * 50)
-    print(f"  Symbol     : {symbol}")
-    print(f"  Side       : {side}")
-    print(f"  Type       : {order_type}")
-    print(f"  Quantity   : {quantity}")
+    """Print a rich styled order request summary."""
+    table = Table(box=box.ROUNDED, show_header=False, border_style="cyan")
+    table.add_column("Field", style="cyan bold", width=15)
+    table.add_column("Value", style="white bold")
+
+    table.add_row("Symbol",     f"[yellow]{symbol}[/yellow]")
+    table.add_row("Side",       f"[green]{side}[/green]" if side == "BUY" else f"[red]{side}[/red]")
+    table.add_row("Type",       f"[magenta]{order_type}[/magenta]")
+    table.add_row("Quantity",   f"[white]{quantity}[/white]")
     if price:
-        print(f"  Price      : {price}")
+        table.add_row("Price", f"[white]{price}[/white]")
     if stop_price:
-        print(f"  Stop Price : {stop_price}")
-    print("=" * 50)
+        table.add_row("Stop Price", f"[white]{stop_price}[/white]")
+
+    console.print()
+    console.print(Panel(table, title="[bold cyan]📋 ORDER REQUEST SUMMARY[/bold cyan]", border_style="cyan"))
 
 
 def print_order_response(order: dict):
-    """Print a clean order response to the console."""
-    print("\n" + "=" * 50)
-    print("         ORDER RESPONSE")
-    print("=" * 50)
-    print(f"  Order ID     : {order.get('orderId')}")
-    print(f"  Symbol       : {order.get('symbol')}")
-    print(f"  Side         : {order.get('side')}")
-    print(f"  Type         : {order.get('type')}")
-    print(f"  Status       : {order.get('status')}")
-    print(f"  Price        : {order.get('price')}")
-    print(f"  Avg Price    : {order.get('avgPrice')}")
-    print(f"  Quantity     : {order.get('origQty')}")
-    print(f"  Executed Qty : {order.get('executedQty')}")
-    print("=" * 50)
+    """Print a rich styled order response."""
+    status = order.get('status', '')
+    status_color = "green" if status == "FILLED" else "yellow"
+
+    table = Table(box=box.ROUNDED, show_header=False, border_style="green")
+    table.add_column("Field", style="cyan bold", width=15)
+    table.add_column("Value", style="white bold")
+
+    table.add_row("Order ID",     f"[white]{order.get('orderId')}[/white]")
+    table.add_row("Symbol",       f"[yellow]{order.get('symbol')}[/yellow]")
+    table.add_row("Side",         f"[green]{order.get('side')}[/green]" if order.get('side') == "BUY" else f"[red]{order.get('side')}[/red]")
+    table.add_row("Type",         f"[magenta]{order.get('type')}[/magenta]")
+    table.add_row("Status",       f"[{status_color}]{status}[/{status_color}]")
+    table.add_row("Price",        f"[white]{order.get('price')}[/white]")
+    table.add_row("Avg Price",    f"[white]{order.get('avgPrice')}[/white]")
+    table.add_row("Quantity",     f"[white]{order.get('origQty')}[/white]")
+    table.add_row("Executed Qty", f"[white]{order.get('executedQty')}[/white]")
