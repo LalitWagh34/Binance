@@ -1,0 +1,24 @@
+2026-06-08T17:31:11 | INFO     | trading_bot.client | BinanceClient initialized (testnet)
+2026-06-08T17:31:11 | INFO     | trading_bot.orders | Placing MARKET order: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.001}
+2026-06-08T17:31:11 | INFO     | trading_bot.client | POST https://testnet.binance.vision/api/v3/order | params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.001, 'timestamp': 1780920071479}
+2026-06-08T17:31:14 | DEBUG    | trading_bot.client | Response status: 200 | body: {"symbol":"BTCUSDT","orderId":1971441,"orderListId":-1,"clientOrderId":"YU2UJQNt5esCOmuHeizSTY","transactTime":1780920074744,"price":"0.00000000","origQty":"0.00100000","executedQty":"0.00100000","origQuoteOrderQty":"0.00000000","cummulativeQuoteQty":"63.64513000","status":"FILLED","timeInForce":"GTC","type":"MARKET","side":"BUY","workingTime":1780920074744,"fills":[{"price":"63645.13000000","qty":"0.00100000","commission":"0.00000000","commissionAsset":"BTC","tradeId":589187}],"selfTradePrevent
+2026-06-08T17:31:14 | INFO     | trading_bot.orders | MARKET order success: {'orderId': 1971441, 'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'status': 'FILLED', 'price': '0.00000000', 'avgPrice': None, 'origQty': '0.00100000', 'executedQty': '0.00100000', 'timeInForce': 'GTC', 'updateTime': None}
+2026-06-08T17:31:14 | INFO     | trading_bot.cli | Order placed successfully: orderId=1971441
+2026-06-08T17:31:56 | INFO     | trading_bot.client | BinanceClient initialized (testnet)
+2026-06-08T17:31:56 | INFO     | trading_bot.orders | Placing LIMIT order: {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.001, 'price': 70000.0, 'timeInForce': 'GTC'}
+2026-06-08T17:31:56 | INFO     | trading_bot.client | POST https://testnet.binance.vision/api/v3/order | params: {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.001, 'price': 70000.0, 'timeInForce': 'GTC', 'timestamp': 1780920116173}
+2026-06-08T17:31:58 | DEBUG    | trading_bot.client | Response status: 200 | body: {"symbol":"BTCUSDT","orderId":1971832,"orderListId":-1,"clientOrderId":"2Bd4AbB6EflSwKV5tsqjAb","transactTime":1780920118660,"price":"70000.00000000","origQty":"0.00100000","executedQty":"0.00000000","origQuoteOrderQty":"0.00000000","cummulativeQuoteQty":"0.00000000","status":"NEW","timeInForce":"GTC","type":"LIMIT","side":"SELL","workingTime":1780920118660,"fills":[],"selfTradePreventionMode":"EXPIRE_MAKER"}
+2026-06-08T17:31:58 | INFO     | trading_bot.orders | LIMIT order success: {'orderId': 1971832, 'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'status': 'NEW', 'price': '70000.00000000', 'avgPrice': None, 'origQty': '0.00100000', 'executedQty': '0.00000000', 'timeInForce': 'GTC', 'updateTime': None}
+2026-06-08T17:31:58 | INFO     | trading_bot.cli | Order placed successfully: orderId=1971832
+2026-06-08T17:32:26 | INFO     | trading_bot.client | BinanceClient initialized (testnet)
+2026-06-08T17:32:26 | INFO     | trading_bot.orders | Placing STOP_MARKET order: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'STOP_MARKET', 'quantity': 0.001, 'stopPrice': 65000.0}
+2026-06-08T17:32:26 | INFO     | trading_bot.client | POST https://testnet.binance.vision/api/v3/order | params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'STOP_MARKET', 'quantity': 0.001, 'stopPrice': 65000.0, 'timestamp': 1780920146590}
+2026-06-08T17:32:28 | DEBUG    | trading_bot.client | Response status: 400 | body: {"code":-1116,"msg":"Invalid orderType."}
+2026-06-08T17:32:28 | ERROR    | trading_bot.orders | STOP_MARKET order failed: Binance API Error -1116: Invalid orderType.
+2026-06-08T17:32:28 | ERROR    | trading_bot.cli | Binance API error: Binance API Error -1116: Invalid orderType.
+2026-06-08T17:40:34 | INFO     | trading_bot.client | BinanceClient initialized (testnet)
+2026-06-08T17:40:34 | INFO     | trading_bot.orders | Placing STOP_LOSS_LIMIT order: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'STOP_LOSS_LIMIT', 'quantity': 0.001, 'stopPrice': 65000.0, 'price': 65000.0, 'timeInForce': 'GTC'}
+2026-06-08T17:40:34 | INFO     | trading_bot.client | POST https://testnet.binance.vision/api/v3/order | params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'STOP_LOSS_LIMIT', 'quantity': 0.001, 'stopPrice': 65000.0, 'price': 65000.0, 'timeInForce': 'GTC', 'timestamp': 1780920634310}
+2026-06-08T17:40:38 | DEBUG    | trading_bot.client | Response status: 200 | body: {"symbol":"BTCUSDT","orderId":1977180,"orderListId":-1,"clientOrderId":"aZ84ZYLiMVuPbO0QIeStWJ","transactTime":1780920639126}
+2026-06-08T17:40:38 | INFO     | trading_bot.orders | STOP_LOSS_LIMIT order success : {'orderId': 1977180, 'symbol': 'BTCUSDT', 'side': None, 'type': None, 'status': None, 'price': None, 'avgPrice': None, 'origQty': None, 'executedQty': None, 'timeInForce': None, 'updateTime': None}
+2026-06-08T17:40:38 | INFO     | trading_bot.cli | Order placed successfully: orderId=1977180
