@@ -129,18 +129,20 @@ def place_stop_market_order(
     params = {
         "symbol":    symbol,
         "side":      side,
-        "type":      "STOP_MARKET",
+        "type":      "STOP_LOSS_LIMIT",
         "quantity":  quantity,
         "stopPrice": stop_price,
+        "price":       stop_price,  # limit price = stop price
+        "timeInForce": "GTC",
     }
-    logger.info("Placing STOP_MARKET order: %s", params)
+    logger.info("Placing STOP_LOSS_LIMIT order: %s", params)
     try:
         response = client.post(ORDER_ENDPOINT, params=params)
         parsed = _parse_order_response(response)
-        logger.info("STOP_MARKET order success: %s", parsed)
+        logger.info("STOP_LOSS_LIMIT order success : %s", parsed)
         return parsed
     except Exception as e:
-        logger.error("STOP_MARKET order failed: %s", e)
+        logger.error("STOP_LOSS_LIMIT order failed: %s", e)
         raise
 
 
