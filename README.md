@@ -169,14 +169,14 @@ python cli.py --symbol BTCUSDT --side HOLD --type MARKET --qty 0.001
 ---
 
 ## 📋 Logging
-
+```
 All activity is logged to `logs/trading_bot.log`
 
 2026-06-08T17:30:01 | INFO     | trading_bot.client | GET https://testnet.binance.vision/api/v3/time
 2026-06-08T17:30:02 | INFO     | trading_bot.orders | Placing MARKET order: {'symbol': 'BTCUSDT', 'side': 'BUY', ...}
 2026-06-08T17:30:02 | INFO     | trading_bot.orders | MARKET order success: {'orderId': 123456789, 'status': 'FILLED', ...}
 2026-06-08T17:30:02 | INFO     | trading_bot.cli    | Order placed successfully: orderId=123456789
-
+```
 - Log file rotates at **5MB** (keeps last 3 backups)
 - Console shows **warnings and errors only**
 - File captures **everything** (DEBUG → CRITICAL)
