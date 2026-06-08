@@ -19,9 +19,10 @@ Built with structured logging, input validation, and proper error handling.
 
 ## 📁 Project Structure
 
+```
 trading_bot/
 ├── bot/
-│   ├── init.py
+│   ├── __init__.py
 │   ├── client.py           # Binance API wrapper (auth + HTTP)
 │   ├── orders.py           # Order placement logic
 │   ├── validators.py       # Input validation
@@ -33,6 +34,7 @@ trading_bot/
 ├── .gitignore
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
@@ -128,7 +130,7 @@ python cli.py --help
 ---
 
 ## 📤 Sample Output
-
+```
 ==================================================
 ORDER REQUEST SUMMARY
 Symbol     : BTCUSDT
@@ -147,7 +149,7 @@ Avg Price    : 63135.20
 Quantity     : 0.001
 Executed Qty : 0.001
 ✅ Order placed successfully!
-
+```
 ---
 
 ## ❌ Error Handling Examples
