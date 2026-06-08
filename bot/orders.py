@@ -8,7 +8,7 @@ from bot.logging_config import get_logger
 
 logger = get_logger("orders")
 
-ORDER_ENDPOINT = "/fapi/v1/order"
+ORDER_ENDPOINT = "/api/v3/order"
 
 
 def _parse_order_response(response: dict) -> dict:

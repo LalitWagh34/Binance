@@ -14,7 +14,7 @@ from bot.logging_config import get_logger
 
 logger = get_logger("client")
 
-BASE_URL = "https://testnet.binancefuture.com"
+BASE_URL = "https://testnet.binance.vision"
 TIMEOUT = 10  # seconds
 
 
@@ -124,7 +124,7 @@ class BinanceClient:
 
     def get_server_time(self) -> dict:
         """Fetch Binance server time (useful for connectivity check)."""
-        return self.get("/fapi/v1/time")
+        return self.get("/api/v3/time")
 
     def get_exchange_info(self) -> dict:
         """Fetch exchange trading rules and symbol information."""
@@ -132,4 +132,4 @@ class BinanceClient:
 
     def get_account(self) -> dict:
         """Fetch account information (signed)."""
-        return self.get("/fapi/v2/account", signed=True)
+        return self.get("/api/v3/account", signed=True)
